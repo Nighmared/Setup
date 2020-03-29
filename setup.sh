@@ -2,6 +2,8 @@ printf 'About to do a full installation, continue? (y/n) '
 read start
 echo "$*"
 if [ $start = "y" ] || [ $start = "yes" ]; then
+	parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+	cd "$parent_path"
 	#============================
 	#sources all at once so apt only is updated once :))
 	#Brave sources
@@ -57,6 +59,7 @@ if [ $start = "y" ] || [ $start = "yes" ]; then
 		echo '#fuck python2' >> ~/.bashrc
 		echo 'alias python='\''python3'\' >> ~/.bashrc
 		echo 'alias pip='\''pip3'\' >> ~/.bashrc
+		source ~/.bashrc
 		echo 'Python Optimizations done'
 	fi
 	
