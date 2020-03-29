@@ -1,5 +1,6 @@
 printf 'About to do a full installation, continue? (y/n) '
 read start
+echo "$*"
 if [ $start = "y" ] || [ $start = "yes" ]; then
 	#============================
 	#sources all at once so apt only is updated once :))
@@ -24,21 +25,39 @@ if [ $start = "y" ] || [ $start = "yes" ]; then
 
 	#Installations
 	toInstall=$(tr '\n' ' ' <allInstalls.txt)
+
+	if [[ "$*" == *"--nopython"* ]]; then
+		toInstall=$(sed -e 's/python3-pip//' -e 's/python3//' <<< "$toInstall")
+	fi
+	if [[ "$*" == *"--nobrave"* ]]; then
+		toInstall=$(sed -e 's/brave-browser-nightly//' <<< "$toInstall")
+	fi
+	if [[ "$*" == *"--nospotify"* ]]; then
+		toInstall=$(sed -e 's/spotify-client//' <<< "$toInstall")
+	fi
+	if [[ "$*" == *"--notypora"* ]]; then
+		toInstall=$(sed -e 's/typora//' <<< "$toInstall")
+	fi
+	if [[ "$*" == *"--nocode"* ]]; then
+		toInstall=$(sed -e 's/code//' <<< "$toInstall")
+	fi
+
+	toInstall=$(sed -e 's/  / /' <<< "$toInstall") #eliminate tons of spaces
+	
+	#echo $toInstall
+
 	printf "Installing everything...\r"
 	sudo apt-get --quiet install $toInstall >> /dev/null 2>&1
 	echo "Installation Done                   "
 	
 
-
 	#Python
-	if [ $1 != "nopython" ] && [ $1 != "-nopython" ]; then
+	if [[ "$*" != *"nopython"* ]]; then
 		echo ''>> ~/.bashrc
 		echo '#fuck python2' >> ~/.bashrc
 		echo 'alias python='\''python3'\' >> ~/.bashrc
 		echo 'alias pip='\''pip3'\' >> ~/.bashrc
 		echo 'Python Optimizations done'
-	else
-		echo "nopython parameter found; Nothing added to .bashrc"
 	fi
 	
 

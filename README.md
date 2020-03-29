@@ -6,6 +6,14 @@ Currently the following scripts are included
 
 
 - #*Do all of the below* [`setup.sh`]
+  - Main script, best maintained
+  - to exclude specific applications use
+    - `--nopython`
+    - `--nobrave`
+    - `--nospotify`
+    - `--notypora`
+    - `--nocode`
+    - ...
 - #*Fuck Python2* [`setup-Python3.sh`]
   - Install `pip3`
   - Just to make sure, install `python3`
@@ -15,10 +23,12 @@ Currently the following scripts are included
   - Add required Sources and install Nightly release of the [Brave Browser](https://brave.com "Brave.com")
 - #*Play music* [`setup-Spotify.sh`]
   - Simply installs the Spotify Client
-- #*Edit Markdown* files [`setup-Typora.sh`]
+- #*Edit Markdown Textfiles* [`setup-Typora.sh`]
   - Adds required Sources and install latest Release of [Typora](https://typora.io "Typora.io")
 - #*Edit Code* [`setup-VScode.sh`]
   - Simply installs Visual Studio Code
+
+
 
 > More to come...
 
