@@ -9,8 +9,8 @@ if [ $start = "y" ] || [ $start = "yes" ]; then
 	#Brave sources
 	printf "Adding Brave sources \r"
 	sudo apt-get --quiet install apt-transport-https curl >> /dev/null 2>&1
-	curl -s https://brave-browser-apt-nightly.s3.brave.com/brave-core-nightly.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-prerelease.gpg add - >> /dev/null 2>&1
-	echo "deb [arch=amd64] https://brave-browser-apt-nightly.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-nightly.list >>/dev/null 2>&1
+	curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - >> /dev/null 2>&1
+	echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list >> /dev/null 2>&1
 	echo "Brave sources added            "
 	#Typora sources
 	printf "Adding Typora sources \r"
@@ -32,7 +32,7 @@ if [ $start = "y" ] || [ $start = "yes" ]; then
 		toInstall=$(sed -e 's/python3-pip//' -e 's/python3//' <<< "$toInstall")
 	fi
 	if [[ "$*" == *"--nobrave"* ]]; then
-		toInstall=$(sed -e 's/brave-browser-nightly//' <<< "$toInstall")
+		toInstall=$(sed -e 's/brave-browser//' <<< "$toInstall")
 	fi
 	if [[ "$*" == *"--nospotify"* ]]; then
 		toInstall=$(sed -e 's/spotify-client//' <<< "$toInstall")
