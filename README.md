@@ -1,6 +1,6 @@
 # Setup
 Script to quickly setup a new environment with useful aliases and some Applications
-
+ 
 
 
 #### Usage
