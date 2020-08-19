@@ -1,6 +1,6 @@
 # Setup
 Script to quickly setup a new environment with useful aliases and some Applications
- 
+
 
 
 #### Usage
@@ -31,3 +31,13 @@ use `--no*` to exclude specific programs from the installation
 
 
 
+<hr>
+
+#### TODO
+
+- Add zsh install
+  - make default shell
+- install oh-my-zsh
+  - set to agnoster theme
+- add alacritty install
+  - ​	make default terminal emulator
